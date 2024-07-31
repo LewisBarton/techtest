@@ -1,14 +1,17 @@
 # Use the official .NET SDK image to build the application
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the project file and restore any dependencies
-COPY *.csproj ./
+# Copy all project files and restore dependencies
+COPY UserManagement.Web/UserManagement.Web.csproj UserManagement.Web/
+COPY UserManagement.Data/UserManagement.Data.csproj UserManagement.Data/
+COPY UserManagement.Services/UserManagement.Services.csproj UserManagement.Services/
+WORKDIR /app/UserManagement.Web
 RUN dotnet restore
 
-# Copy the rest of the application code
+# Copy the rest of the source code
 COPY . .
 
 # Build the application
@@ -19,7 +22,7 @@ FROM build AS publish
 RUN dotnet publish -c Release -o /app/publish
 
 # Use the official .NET runtime image to run the application
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS final
 WORKDIR /app
 
 # Copy the published application from the previous stage
