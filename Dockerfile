@@ -8,6 +8,7 @@ WORKDIR /app
 COPY UserManagement.Web/UserManagement.Web.csproj UserManagement.Web/
 COPY UserManagement.Data/UserManagement.Data.csproj UserManagement.Data/
 COPY UserManagement.Services/UserManagement.Services.csproj UserManagement.Services/
+WORKDIR /app
 RUN dotnet restore
 
 # Copy the rest of the source code
