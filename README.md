@@ -63,3 +63,10 @@ Add additional layers to the application that will ensure that it is scaleable w
 
 * Please feel free to change or refactor any code that has been supplied within the solution and think about clean maintainable code and architecture when extending the project.
 * If any additional packages, tools or setup are required to run your completed version, please document these thoroughly.
+
+## My changes
+* Added two workflows to the git repo for the purpose of CI/CD
+* The first workflow simply deploys the app and tests it, this is automatically triggered on a push/pull request to main.
+* The second workflow builds a docker image to ECR which then allows the app to be deployed to ECS this could be adapted to run on an EC2 instance if required, this is also ran on a push to main or on a manual trigger.
+* There has been a number of services required/setup within AWS including IAM roles, Subnets and Security groups, Trust policies and ECS task definitions. If you would like to view the changes within AWS please email me and I can setup a user to view these.
+* Future steps would include adding terraform to the repo to define aws resources and allow deployments to EC2 through github actions/workflows.
