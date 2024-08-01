@@ -3,7 +3,8 @@ name: Deploy to AWS ECS
 on:
   push:
     branches:
-      - main  # Trigger deployment on push to the main branch
+      - main
+  workflow_dispatch:  # Added line
 
 jobs:
   deploy:
